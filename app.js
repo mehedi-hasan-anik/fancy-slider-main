@@ -26,10 +26,12 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.largeImageURL}") src="${image.largeImageURL}" alt="${image.tags}">`;
     gallery.appendChild(div);
   })
-
+  toggleSpinner();
+ 
 }
 
 const getImages = (query) => {
+  toggleSpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}&q=${query}&image_type=photo`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -46,7 +48,7 @@ const selectItem = (event, img) => {
   }
   else{
     element.classList.toggle('added');
-    sliders.pop();
+    sliders.splice(item, 1);
   }
 }
 var timer
@@ -140,3 +142,8 @@ document.getElementById('search').addEventListener('keypress',function(event){
       searchBtn.click();
     }
 })
+
+const toggleSpinner = () => {
+  const spinner = document.getElementById('spinner-area');
+  spinner.classList.toggle('d-none');
+}
