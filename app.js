@@ -124,6 +124,7 @@ const changeSlide = (index) => {
 searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'block';
   clearInterval(timer);
+  gallery.innerHTML='';
   const search = document.getElementById('search');
   if(search.value ==='' || !isNaN(search.value)){
     alert("Not valid");
