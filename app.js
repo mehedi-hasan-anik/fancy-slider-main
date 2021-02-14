@@ -125,7 +125,12 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'block';
   clearInterval(timer);
   const search = document.getElementById('search');
+  if(search.value ==='' || !isNaN(search.value)){
+    alert("Not valid");
+}
+ else{
   getImages(search.value);
+ }
   sliders.length = 0;
 })
 
